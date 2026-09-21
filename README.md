@@ -28,6 +28,22 @@ skills/
 
 ## Installation
 
+### One-line installation (recommended)
+
+With Node.js/npm installed, use the [Vercel Labs Skills CLI](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add ugurakdemir/web-project-starter --skill project-starter
+```
+
+Follow the prompts to select agents and installation scope. To target Codex, Claude Code, Gemini CLI, and Cursor globally:
+
+```bash
+npx skills add ugurakdemir/web-project-starter --skill project-starter -g -a codex claude-code gemini-cli cursor
+```
+
+`-g` installs for use across projects on your machine. Omit it to install into the current project. You can also select just one agent with `-a`, as shown for Cursor below. The following sections provide platform-specific alternatives and usage instructions.
+
 ### Codex
 
 Clone this repository, then copy `skills/project-starter` into your Codex skills directory, usually `~/.codex/skills/`. If you use a custom `CODEX_HOME`, use its `skills/` directory instead. Preserve any existing installation before replacing it.
@@ -64,11 +80,31 @@ Use the project-starter skill to create PROJECT-SPEC.md for a bilingual corporat
 
 See the [official Gemini CLI skills documentation](https://geminicli.com/docs/cli/skills/).
 
-Both tools support this skill's file structure. Runtime behavior in Claude Code and Gemini CLI has not yet been tested.
+### Cursor
+
+Install globally for Cursor:
+
+```bash
+npx skills add ugurakdemir/web-project-starter --skill project-starter -g -a cursor
+```
+
+For a project-specific installation, run the command from your target project and omit `-g`.
+
+Alternatively, clone this repository and copy the complete `skills/project-starter` folder into `~/.cursor/skills/` for local use across projects, or `.cursor/skills/` inside your target project. Preserve any existing installation before replacing it. Include both `SKILL.md` and the `assets/` directory.
+
+Restart Cursor after installation if the skill is not discovered. In Agent chat, type `/`, select `project-starter`, and provide your brief:
+
+```text
+/project-starter Create PROJECT-SPEC.md for a bilingual corporate website. Next.js and DatoCMS are confirmed. Propose the remaining choices and identify architectural questions before implementation.
+```
+
+See the [official Cursor skills documentation](https://cursor.com/docs/skills).
+
+Claude Code, Gemini CLI, and Cursor support this skill's file structure. Installation commands and runtime behavior in these agents have not yet been tested for this repository.
 
 ## Usage
 
-In Codex, invoke the skill in a project with your brief (use the platform-specific invocation above for Claude Code or Gemini CLI):
+In Codex, invoke the skill in a project with your brief (use the platform-specific invocation above for Claude Code, Gemini CLI, or Cursor):
 
 > Use $project-starter to create PROJECT-SPEC.md for a bilingual corporate website. Required pages: home, about, products, product details, and contact. Next.js and DatoCMS are confirmed. Propose the remaining choices, explain the rationale, and identify architectural questions before implementation.
 
