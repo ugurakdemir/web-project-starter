@@ -26,15 +26,49 @@ skills/
 
 `SKILL.md` defines the workflow. The template defines the generated document's structure. No runtime dependencies are required.
 
-## Install in Codex
+## Installation
+
+### Codex
 
 Clone this repository, then copy `skills/project-starter` into your Codex skills directory, usually `~/.codex/skills/`. If you use a custom `CODEX_HOME`, use its `skills/` directory instead. Preserve any existing installation before replacing it.
 
-For other agents that support `SKILL.md` packages, use the same skill folder with that agent's installation mechanism. Compatibility with other agents has not been tested.
+### Claude Code
+
+Clone this repository, then copy the complete `skills/project-starter` folder into `~/.claude/skills/` for use across projects. For a project-specific installation, copy it into `.claude/skills/` inside your target project instead. Preserve any existing installation before replacing it.
+
+The resulting structure should contain `project-starter/SKILL.md` and `project-starter/assets/PROJECT-SPEC.template.md` inside the chosen skills directory.
+
+In Claude Code, invoke the skill with your brief:
+
+```text
+/project-starter Create PROJECT-SPEC.md for a bilingual corporate website. Next.js and DatoCMS are confirmed. Propose the remaining choices and identify architectural questions before implementation.
+```
+
+See the [official Claude Code skills documentation](https://code.claude.com/docs/en/skills).
+
+### Gemini CLI
+
+Install the skill directly from this repository:
+
+```bash
+gemini skills install https://github.com/ugurakdemir/web-project-starter.git --path skills/project-starter
+```
+
+The default installation scope is your user account. Add `--scope workspace` to install it for the current project instead. Review and accept any installation prompts.
+
+In an existing Gemini CLI session, run `/skills reload`, then `/skills list` to check that `project-starter` is available. Ask Gemini to use it:
+
+```text
+Use the project-starter skill to create PROJECT-SPEC.md for a bilingual corporate website. Next.js and DatoCMS are confirmed. Propose the remaining choices and identify architectural questions before implementation.
+```
+
+See the [official Gemini CLI skills documentation](https://geminicli.com/docs/cli/skills/).
+
+Both tools support this skill's file structure. Runtime behavior in Claude Code and Gemini CLI has not yet been tested.
 
 ## Usage
 
-Invoke the skill in a project with your brief:
+In Codex, invoke the skill in a project with your brief (use the platform-specific invocation above for Claude Code or Gemini CLI):
 
 > Use $project-starter to create PROJECT-SPEC.md for a bilingual corporate website. Required pages: home, about, products, product details, and contact. Next.js and DatoCMS are confirmed. Propose the remaining choices, explain the rationale, and identify architectural questions before implementation.
 
